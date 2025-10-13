@@ -21,12 +21,16 @@ fetch("songs.json")
         });
 
         // 绑定回车键搜索
-        document.getElementById("searchInput").addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                searchSongs();
-            }
-        });
     });
+
+// 给搜索框绑定回车键事件
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+    // 检查是否按下的是回车键
+    if (event.key === "Enter") {
+        event.preventDefault(); // 阻止默认行为（防止表单提交刷新页面）
+        searchSongs(); // 调用搜索函数
+    }
+});
 
 
 function renderTable(data) {
