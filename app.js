@@ -1,18 +1,27 @@
-let songs = [];           // 全量数据
-let currentData = [];     // 当前显示的数据
-let currentSort = { column: 0, direction: 1 };
+let songs = [];
+let currentData = [];
+let fuse; // Fuse 实例
 
-// 加载歌曲数据
 fetch("songs.json")
     .then(res => res.json())
     .then(data => {
         songs = data;
-        currentData = [...songs]; // 初始显示全部
+        currentData = [...songs];
         renderTable(currentData);
+
+        // 创建 Fuse 实例
+        fuse = new Fuse(songs, {
+            keys: [
+                { name: 'title', weight: 0.7 },
+                { name: 'aliases', weight: 0.3 }
+            ],
+            threshold: 0.4, // 模糊程度，越小越精确
+            ignoreLocation: true
+        });
     });
 
 function renderTable(data) {
-    currentData = [...data]; // 更新当前显示的数据
+    currentData = [...data];
     const tbody = document.getElementById("songTable");
     tbody.innerHTML = "";
     data.forEach(song => {
@@ -38,24 +47,12 @@ function searchSongs() {
         return;
     }
 
-    // 模糊搜索标题和别名
-    const results = songs.map(song => {
-        const titleScore = Fuzzy.score(keyword, song.title);
-        const aliasScore = song.aliases.reduce((max, alias) => {
-            const score = Fuzzy.score(keyword, alias);
-            return Math.max(max, score);
-        }, 0);
-        return {
-            song,
-            score: Math.max(titleScore, aliasScore)
-        };
-    })
-    .filter(item => item.score > 40) // 阈值，可调
-    .sort((a, b) => b.score - a.score || a.song.title.localeCompare(b.song.title));
-
-    currentData = results.map(item => item.song);
+    // 模糊搜索
+    const result = fuse.search(keyword);
+    currentData = result.map(item => item.item);
     renderTable(currentData);
 }
+
 function showRandomSongs() {
     const shuffled = [...songs].sort(() => 0.5 - Math.random());
     currentData = shuffled.slice(0, 10);
@@ -63,14 +60,14 @@ function showRandomSongs() {
 }
 
 function sortTable(column) {
+    // 排序逻辑保持不变
     if (currentSort.column === column) {
         currentSort.direction *= -1;
     } else {
         currentSort.column = column;
         currentSort.direction = 1;
     }
-    
-    // 关键：只对当前显示的数据排序
+
     const sorted = [...currentData].sort((a, b) => {
         let valA, valB;
         switch(column) {
@@ -101,6 +98,6 @@ function sortTable(column) {
         }
         return (valA > valB ? 1 : -1) * currentSort.direction;
     });
-    
+
     renderTable(sorted);
 }
