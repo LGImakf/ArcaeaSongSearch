@@ -1,5 +1,7 @@
 let songs = [];
 let currentData = [];
+let currentSort = { column: 0, direction: 1 }; // 排序状态
+
 let fuse; // Fuse 实例
 
 fetch("songs.json")
@@ -60,43 +62,51 @@ function showRandomSongs() {
 }
 
 function sortTable(column) {
-    // 排序逻辑保持不变
+    // 如果点击的是当前排序的列，切换排序方向
     if (currentSort.column === column) {
         currentSort.direction *= -1;
     } else {
+        // 否则重置为升序
         currentSort.column = column;
         currentSort.direction = 1;
     }
 
+    // 排序当前显示的数据
     const sorted = [...currentData].sort((a, b) => {
         let valA, valB;
         switch(column) {
-            case 0: 
-                valA = a.title.toLowerCase(); 
-                valB = b.title.toLowerCase(); 
+            case 0: // 标题
+                valA = a.title.toLowerCase();
+                valB = b.title.toLowerCase();
                 break;
-            case 1: 
-                valA = a.difficulties.PST ?? -1; 
-                valB = b.difficulties.PST ?? -1; 
+            case 1: // PST
+                valA = a.difficulties.PST ?? -1;
+                valB = b.difficulties.PST ?? -1;
                 break;
-            case 2: 
-                valA = a.difficulties.PRS ?? -1; 
-                valB = b.difficulties.PRS ?? -1; 
+            case 2: // PRS
+                valA = a.difficulties.PRS ?? -1;
+                valB = b.difficulties.PRS ?? -1;
                 break;
-            case 3: 
-                valA = a.difficulties.FTR ?? -1; 
-                valB = b.difficulties.FTR ?? -1; 
+            case 3: // FTR
+                valA = a.difficulties.FTR ?? -1;
+                valB = b.difficulties.FTR ?? -1;
                 break;
-            case 4: 
-                valA = a.difficulties.BYD ?? -1; 
-                valB = b.difficulties.BYD ?? -1; 
+            case 4: // BYD
+                valA = a.difficulties.BYD ?? -1;
+                valB = b.difficulties.BYD ?? -1;
                 break;
-            case 5: 
-                valA = a.difficulties.ETR ?? -1; 
-                valB = b.difficulties.ETR ?? -1; 
+            case 5: // ETR
+                valA = a.difficulties.ETR ?? -1;
+                valB = b.difficulties.ETR ?? -1;
                 break;
         }
-        return (valA > valB ? 1 : -1) * currentSort.direction;
+
+        // 数字比较
+        if (typeof valA === 'number' && typeof valB === 'number') {
+            return (valA - valB) * currentSort.direction;
+        }
+        // 字符串比较
+        return valA.localeCompare(valB) * currentSort.direction;
     });
 
     renderTable(sorted);
