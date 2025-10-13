@@ -35,14 +35,18 @@ function searchSongs() {
     if (!keyword) {
         currentData = [...songs];
     } else {
-        currentData = songs.filter(song => 
-            song.title.toLowerCase().includes(keyword) ||
-            song.aliases.some(a => a.toLowerCase().includes(keyword))
-        );
+        currentData = songs.filter(song => {
+            // 匹配标题
+            const matchTitle = song.title.toLowerCase().includes(keyword);
+            // 匹配别名
+            const matchAlias = song.aliases.some(alias => 
+                alias.toLowerCase().includes(keyword)
+            );
+            return matchTitle || matchAlias;
+        });
     }
     renderTable(currentData);
 }
-
 function showRandomSongs() {
     const shuffled = [...songs].sort(() => 0.5 - Math.random());
     currentData = shuffled.slice(0, 10);
