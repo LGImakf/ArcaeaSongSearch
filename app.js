@@ -132,6 +132,12 @@ function addPageButton(text, pageNum, isActive = false) {
     document.getElementById("pagination").appendChild(btn);
 }
 
+function showRandomSongs() {
+    const shuffled = [...songs].sort(() => 0.5 - Math.random());
+    currentData = shuffled.slice(0, 10);
+    renderTable(currentData);
+}
+
 function searchSongs() {
     const keyword = document.getElementById("searchInput").value.trim();
     if (!keyword) {
