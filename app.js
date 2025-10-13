@@ -33,9 +33,10 @@ function renderTable(data) {
     currentData = [...data];
     const tbody = document.getElementById("songTable");
     tbody.innerHTML = "";
+
     data.forEach(song => {
         const row = document.createElement("tr");
-        row.className = "hover:bg-gray-50";
+        row.className = "hover:bg-gray-50 cursor-pointer"; // 鼠标悬停效果
         row.innerHTML = `
             <td class="px-6 py-4 whitespace-nowrap">${song.title}</td>
             <td class="px-6 py-4 text-center">${song.difficulties.PST ?? '-'}</td>
@@ -44,8 +45,42 @@ function renderTable(data) {
             <td class="px-6 py-4 text-center">${song.difficulties.BYD ?? '-'}</td>
             <td class="px-6 py-4 text-center">${song.difficulties.ETR ?? '-'}</td>
         `;
+
+        // 点击行显示别名卡片
+        row.addEventListener("click", () => showAliases(row, song));
+
         tbody.appendChild(row);
     });
+}
+
+function showAliases(row, song) {
+    // 如果已经有卡片，就移除
+    const existingCard = row.nextElementSibling;
+    if (existingCard && existingCard.classList.contains("alias-card")) {
+        existingCard.remove();
+        return;
+    }
+
+    // 创建别名卡片行
+    const cardRow = document.createElement("tr");
+    cardRow.className = "alias-card"; // 绑定动画类
+    cardRow.innerHTML = `
+        <td colspan="6" class="px-6 py-4 bg-blue-50">
+            <div class="p-4 border border-blue-200 rounded-lg shadow-sm">
+                <h4 class="font-medium text-blue-800 mb-2">别名</h4>
+                <p>${song.aliases.length > 0 
+                    ? song.aliases.join("、") 
+                    : "暂无别名"}</p>
+                <button onclick="this.closest('tr').remove()" 
+                        class="mt-2 px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200">
+                    关闭
+                </button>
+            </div>
+        </td>
+    `;
+
+    // 插入到当前行后面
+    row.parentNode.insertBefore(cardRow, row.nextSibling);
 }
 
 function searchSongs() {
