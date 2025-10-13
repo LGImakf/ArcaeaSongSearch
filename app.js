@@ -17,10 +17,17 @@ fetch("songs.json")
                 { name: 'title', weight: 0.7 },
                 { name: 'aliases', weight: 0.3 }
             ],
-            threshold: 0.4, // 模糊程度，越小越精确
-            ignoreLocation: true
+            threshold: 0.4
+        });
+
+        // 绑定回车键搜索
+        document.getElementById("searchInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                searchSongs();
+            }
         });
     });
+
 
 function renderTable(data) {
     currentData = [...data];
