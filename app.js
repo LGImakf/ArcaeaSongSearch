@@ -72,13 +72,10 @@ function showAliases(row, song) {
         <td colspan="6" class="px-6 py-4 bg-blue-50">
             <div class="p-4 border border-blue-200 rounded-lg shadow-sm">
                 <h4 class="font-medium text-blue-800 mb-2">别名</h4>
-                <p>${song.aliases.length > 0 
+                <p>${song.aliases && song.aliases.length > 0 
                     ? song.aliases.join("、") 
                     : "暂无别名"}</p>
-                <button onclick="this.closest('tr').remove()" 
-                        class="mt-2 px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200">
-                    关闭
-                </button>
+                <!-- 关闭按钮已经删除 -->
             </div>
         </td>
     `;
