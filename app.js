@@ -31,20 +31,29 @@ function renderTable(data) {
 }
 
 function searchSongs() {
-    const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
+    const keyword = document.getElementById("searchInput").value.trim();
     if (!keyword) {
         currentData = [...songs];
-    } else {
-        currentData = songs.filter(song => {
-            // 匹配标题
-            const matchTitle = song.title.toLowerCase().includes(keyword);
-            // 匹配别名
-            const matchAlias = song.aliases.some(alias => 
-                alias.toLowerCase().includes(keyword)
-            );
-            return matchTitle || matchAlias;
-        });
+        renderTable(currentData);
+        return;
     }
+
+    // 模糊搜索标题和别名
+    const results = songs.map(song => {
+        const titleScore = Fuzzy.score(keyword, song.title);
+        const aliasScore = song.aliases.reduce((max, alias) => {
+            const score = Fuzzy.score(keyword, alias);
+            return Math.max(max, score);
+        }, 0);
+        return {
+            song,
+            score: Math.max(titleScore, aliasScore)
+        };
+    })
+    .filter(item => item.score > 40) // 阈值，可调
+    .sort((a, b) => b.score - a.score || a.song.title.localeCompare(b.song.title));
+
+    currentData = results.map(item => item.song);
     renderTable(currentData);
 }
 function showRandomSongs() {
