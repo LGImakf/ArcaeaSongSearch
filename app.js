@@ -1,4 +1,5 @@
-let songs = [];
+let songs = [];           // 全量数据
+let currentData = [];     // 当前显示的数据
 let currentSort = { column: 0, direction: 1 };
 
 // 加载歌曲数据
@@ -6,10 +7,12 @@ fetch("songs.json")
     .then(res => res.json())
     .then(data => {
         songs = data;
-        renderTable(songs);
+        currentData = [...songs]; // 初始显示全部
+        renderTable(currentData);
     });
 
 function renderTable(data) {
+    currentData = [...data]; // 更新当前显示的数据
     const tbody = document.getElementById("songTable");
     tbody.innerHTML = "";
     data.forEach(song => {
@@ -30,19 +33,20 @@ function renderTable(data) {
 function searchSongs() {
     const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
     if (!keyword) {
-        renderTable(songs);
-        return;
+        currentData = [...songs];
+    } else {
+        currentData = songs.filter(song => 
+            song.title.toLowerCase().includes(keyword) ||
+            song.aliases.some(a => a.toLowerCase().includes(keyword))
+        );
     }
-    const results = songs.filter(song => 
-        song.title.toLowerCase().includes(keyword) ||
-        song.aliases.some(a => a.toLowerCase().includes(keyword))
-    );
-    renderTable(results);
+    renderTable(currentData);
 }
 
 function showRandomSongs() {
     const shuffled = [...songs].sort(() => 0.5 - Math.random());
-    renderTable(shuffled.slice(0, 10));
+    currentData = shuffled.slice(0, 10);
+    renderTable(currentData);
 }
 
 function sortTable(column) {
@@ -53,18 +57,37 @@ function sortTable(column) {
         currentSort.direction = 1;
     }
     
-    const sorted = [...songs].sort((a, b) => {
+    // 关键：只对当前显示的数据排序
+    const sorted = [...currentData].sort((a, b) => {
         let valA, valB;
         switch(column) {
-            case 0: valA = a.title.toLowerCase(); valB = b.title.toLowerCase(); break;
-            case 1: valA = a.difficulties.PST ?? -1; valB = b.difficulties.PST ?? -1; break;
-            case 2: valA = a.difficulties.PRS ?? -1; valB = b.difficulties.PRS ?? -1; break;
-            case 3: valA = a.difficulties.FTR ?? -1; valB = b.difficulties.FTR ?? -1; break;
-            case 4: valA = a.difficulties.BYD ?? -1; valB = b.difficulties.BYD ?? -1; break;
-            case 5: valA = a.difficulties.ETR ?? -1; valB = b.difficulties.ETR ?? -1; break;
+            case 0: 
+                valA = a.title.toLowerCase(); 
+                valB = b.title.toLowerCase(); 
+                break;
+            case 1: 
+                valA = a.difficulties.PST ?? -1; 
+                valB = b.difficulties.PST ?? -1; 
+                break;
+            case 2: 
+                valA = a.difficulties.PRS ?? -1; 
+                valB = b.difficulties.PRS ?? -1; 
+                break;
+            case 3: 
+                valA = a.difficulties.FTR ?? -1; 
+                valB = b.difficulties.FTR ?? -1; 
+                break;
+            case 4: 
+                valA = a.difficulties.BYD ?? -1; 
+                valB = b.difficulties.BYD ?? -1; 
+                break;
+            case 5: 
+                valA = a.difficulties.ETR ?? -1; 
+                valB = b.difficulties.ETR ?? -1; 
+                break;
         }
         return (valA > valB ? 1 : -1) * currentSort.direction;
     });
     
     renderTable(sorted);
-}a
+}
