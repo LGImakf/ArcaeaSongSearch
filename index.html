@@ -8,6 +8,7 @@
     <!-- 引入 fuse.js -->
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
     <style>
+    /* 别名卡片动画 */
     .alias-card {
         animation: fadeIn 0.3s ease-out forwards;
     }
@@ -15,12 +16,17 @@
     @keyframes fadeIn {
         from {
             opacity: 0;
-            transform: translateY(-10px); /* 从上方10px位置开始 */
+            transform: translateY(-10px);
         }
         to {
             opacity: 1;
-            transform: translateY(0); /* 移动到正常位置 */
+            transform: translateY(0);
         }
+    }
+
+    /* 默认隐藏 */
+    .hidden {
+        display: none;
     }
     </style>
 
@@ -51,6 +57,8 @@
                     <!-- JavaScript 会填充这里 -->
                 </tbody>
             </table>
+            <div id="pagination" class="flex justify-center mt-4 mb-8"></div>
+
         </div>
     </div>
 
