@@ -391,7 +391,8 @@
       "ETR": 10.9
     },
     "aliases": [
-      "狂妄之人山茶花"
+      "狂妄之人山茶花",
+      "sans"
     ]
   },
   {
@@ -1048,7 +1049,9 @@
       "ETR": null
     },
     "aliases": [
-      "黑魔王remix"
+      "黑魔王remix",
+      "黑魔王2",
+      "黑老二"
     ]
   },
   {
@@ -1166,7 +1169,8 @@
       "ETR": null
     },
     "aliases": [
-      "a0"
+      "a0",
+      "阿列夫零"
     ]
   },
   {
@@ -1253,7 +1257,8 @@
       "ETR": 10.5
     },
     "aliases": [
-      "狂妄之人"
+      "狂妄之人",
+      "sans"
     ]
   },
   {
@@ -1663,7 +1668,10 @@
       "BYD": null,
       "ETR": 10.3
     },
-    "aliases": []
+    "aliases": [
+      "ATM",
+      "Give me your love now"
+    ]
   },
   {
     "title": "BREaK! BREaK! BREaK!",
@@ -1816,7 +1824,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "冬红"
+    ]
   },
   {
     "title": "Magnolia",
@@ -1863,7 +1873,9 @@
       "ETR": null
     },
     "aliases": [
-      "精污花"
+      "精污花",
+      "小花",
+      "你最好的噩梦"
     ]
   },
   {
@@ -3007,7 +3019,8 @@
       "ETR": null
     },
     "aliases": [
-      "咏人不知"
+      "咏人不知",
+      "东雪莲"
     ]
   },
   {
@@ -3276,7 +3289,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "万达李世民"
+    ]
   },
   {
     "title": "AlterAle",
@@ -4090,7 +4105,10 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "VECTOR",
+      "向量"
+    ]
   },
   {
     "title": "AI[UE]OON",
@@ -4929,7 +4947,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "时停"
+    ]
   },
   {
     "title": "Evoltex (poppi'n mix)",
@@ -5287,7 +5307,10 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "BBQ",
+      "巴洛克"
+    ]
   },
   {
     "title": "Dandelion",
