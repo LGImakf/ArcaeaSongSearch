@@ -324,7 +324,8 @@
       "ETR": null
     },
     "aliases": [
-      "火神"
+      "火神",
+      "Vulcanus"
     ]
   },
   {
@@ -647,7 +648,10 @@
       "BYD": null,
       "ETR": 10.8
     },
-    "aliases": []
+    "aliases": [
+      "与或异或",
+      "布尔代数"
+    ]
   },
   {
     "title": "ouroboros -twin stroke of the end-",
@@ -699,7 +703,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "AM"
+    ]
   },
   {
     "title": "REKKA RESONANCE",
@@ -1707,7 +1713,8 @@
       "ETR": null
     },
     "aliases": [
-      "红魔王"
+      "红魔王",
+      "表红"
     ]
   },
   {
@@ -1940,7 +1947,10 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "患部で止まってすぐ溶ける　〜 狂気の優曇華院",
+      "overdrive"
+    ]
   },
   {
     "title": "Gensou no Satellite",
@@ -2242,7 +2252,8 @@
       "ETR": null
     },
     "aliases": [
-      "对立撸串"
+      "对立撸串",
+      "对立情绪"
     ]
   },
   {
@@ -2278,7 +2289,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "第七感"
+    ]
   },
   {
     "title": "Summer Fireworks of Love",
@@ -2579,7 +2592,10 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "黑域",
+      "黑色领地"
+    ]
   },
   {
     "title": "Corruption",
@@ -2614,7 +2630,9 @@
       "BYD": 10.9,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "EJ"
+    ]
   },
   {
     "title": "Lost Desire",
@@ -2660,7 +2678,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "蝴蝶"
+    ]
   },
   {
     "title": "Xeraphinite",
@@ -2671,7 +2691,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "绿龙晶"
+    ]
   },
   {
     "title": "Far Away Light",
@@ -2774,7 +2796,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "背叛"
+    ]
   },
   {
     "title": "Callima Karma",
@@ -2985,7 +3009,11 @@
       "BYD": null,
       "ETR": 9.8
     },
-    "aliases": []
+    "aliases": [
+      "22",
+      "UUZ",
+      "幽幽子"
+    ]
   },
   {
     "title": "LiftOff",
@@ -3170,7 +3198,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "无畏舰"
+    ]
   },
   {
     "title": "Monochrome Princess",
@@ -3267,7 +3297,9 @@
       "BYD": null,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "心巴杰克"
+    ]
   },
   {
     "title": "Dazzle hop",
@@ -3555,7 +3587,8 @@
       "ETR": null
     },
     "aliases": [
-      "白道多希望羊信"
+      "白道多希望羊信",
+      "白道、多希望羊と信じありく"
     ]
   },
   {
@@ -4541,7 +4574,10 @@
       "BYD": 9.9,
       "ETR": null
     },
-    "aliases": []
+    "aliases": [
+      "Anokumene",
+      "无人区"
+    ]
   },
   {
     "title": "Strongholds",
